@@ -1,5 +1,5 @@
 import { Sequelize } from 'sequelize';
-
+import "./config/env";
 
 // const sequelize = new Sequelize({
 //   dialect: 'mysql',
@@ -17,22 +17,36 @@ import { Sequelize } from 'sequelize';
 //   }
 // });
 
-const sequelize = new Sequelize({
-  dialect: 'mysql',
-  host: process.env.host,
-  port: Number(process.env.port),
-  username: process.env.user,
-  password: process.env.password,
-  database: process.env.database,
-  logging: false,
-  pool: {
-    max: 100,
-    min: 0,
-    acquire: 120000,
-    idle: 10000,
-  },
-});
 
+
+// const sequelize = new Sequelize({
+//   dialect: 'mysql',
+//   host: process.env.host,
+//   port: Number(process.env.port),
+//   username: process.env.user,
+//   password: process.env.password,
+//   database: process.env.database,
+//   logging: false,
+//   pool: {
+//     max: 100,
+//     min: 0,
+//     acquire: 120000,
+//     idle: 10000,
+//   },
+// });
+// console.log(process.cwd());
+// console.log(process.env.host);
+
+// console.log("host =", process.env.host);
+// console.log("user =", process.env.user);
+// console.log("password =", process.env.password);
+// console.log("database =", process.env.database);
+
+
+const sequelize = new Sequelize(process.env.MYSQL_PUBLIC_URL as string, {
+  dialect: "mysql",
+  logging: false,
+});
 
 
 sequelize.authenticate()
