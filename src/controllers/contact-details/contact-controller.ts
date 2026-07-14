@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { sendEmail } from "../../middlewares/sendEmail";
+// import { sendEmail } from "../../middlewares/sendEmail";
 import { contactEmailTemplate } from "../../helpers/emailTemplate";
 import ContactDetails from "../../models/Contact/contact-model";
 
@@ -22,21 +22,21 @@ export const ContactDetailsController = async (
       message,
     });
 
-    try {
-       sendEmail({
-        to: "rkaviyapriya11@gmail.com",
-        subject: "New Portfolio Contact",
-        html: contactEmailTemplate({
-          name: userName,
-          email: userMail,
-          subject,
-          message,
-        }),
-      });
-    } catch (mailError) {
-      console.error("Email failed:", mailError);
+    // try {
+    //    sendEmail({
+    //     to: "rkaviyapriya11@gmail.com",
+    //     subject: "New Portfolio Contact",
+    //     html: contactEmailTemplate({
+    //       name: userName,
+    //       email: userMail,
+    //       subject,
+    //       message,
+    //     }),
+    //   });
+    // } catch (mailError) {
+    //   console.error("Email failed:", mailError);
       
-    }
+    // }
 
     res.status(200).json({
       message: "Contact details submitted successfully",
