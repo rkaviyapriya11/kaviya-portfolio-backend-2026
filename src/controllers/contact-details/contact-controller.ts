@@ -21,16 +21,16 @@ export const ContactDetailsController = async (
       message,
     });
 
-    // await sendEmail({
-    //   to: "rkaviyapriya11@gmail.com",
-    //   subject: "New Portfolio Contact",
-    //   html: contactEmailTemplate({
-    //     name: userName,
-    //     email: userMail,
-    //     subject: subject,
-    //     message: message,
-    //   }),
-    // });
+    await sendEmail({
+      to: "rkaviyapriya11@gmail.com",
+      subject: "New Portfolio Contact",
+      html: contactEmailTemplate({
+        name: userName,
+        email: userMail,
+        subject: subject,
+        message: message,
+      }),
+    });
   
     res.status(200).json({
       message: "Contact details submitted successfully and email sent to the admin",
