@@ -11,32 +11,39 @@ export const ContactDetailsController = async (
     const { userName, userMail, subject, message } = req.body;
 
     if (!userName || !userMail || !subject || !message) {
-      res.status(400).json({ message: "Please enter all required feilds" });
+      res.status(400).json({ message: "Please enter all required fields" });
       return;
     }
-      await ContactDetails.create({
+
+    await ContactDetails.create({
       userName,
       userMail,
       subject,
       message,
     });
 
-    await sendEmail({
-      to: "rkaviyapriya11@gmail.com",
-      subject: "New Portfolio Contact",
-      html: contactEmailTemplate({
-        name: userName,
-        email: userMail,
-        subject: subject,
-        message: message,
-      }),
-    });
-  
+    try {
+      await sendEmail({
+        to: "rkaviyapriya11@gmail.com",
+        subject: "New Portfolio Contact",
+        html: contactEmailTemplate({
+          name: userName,
+          email: userMail,
+          subject,
+          message,
+        }),
+      });
+    } catch (mailError) {
+      console.error("Email failed:", mailError);
+      
+    }
+
     res.status(200).json({
-      message: "Contact details submitted successfully and email sent to the admin",
+      message: "Contact details submitted successfully",
     });
-  } catch (error: any) {
-    console.error("Error occured in ContactDetails:", error);
+
+  } catch (error) {
+    console.error("Error occurred in ContactDetails:", error);
     res.status(500).json({ message: "Internal server error" });
   }
 };
