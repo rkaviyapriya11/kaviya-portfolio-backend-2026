@@ -41,6 +41,7 @@ import "./config/env";
 // console.log("user =", process.env.user);
 // console.log("password =", process.env.password);
 // console.log("database =", process.env.database);
+console.log("MYSQL_PUBLIC_URL =", process.env.MYSQL_PUBLIC_URL);
 
 
 const sequelize = new Sequelize(process.env.MYSQL_PUBLIC_URL as string, {
