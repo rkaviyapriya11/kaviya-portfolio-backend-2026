@@ -23,7 +23,7 @@ export const ContactDetailsController = async (
     });
 
     try {
-      await sendEmail({
+       sendEmail({
         to: "rkaviyapriya11@gmail.com",
         subject: "New Portfolio Contact",
         html: contactEmailTemplate({
